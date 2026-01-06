@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "UCSD SSO Auto Select",
+  "version": "1.0.0",
+  "description": "Auto-selects the preferred SSO auth type on configured UCSD login pages.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_title": "UCSD SSO Auto Select"
+  }
+}

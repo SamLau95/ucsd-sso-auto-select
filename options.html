@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UCSD SSO Auto Select Options</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f1e8;
+        --bg-accent: #f0e4d5;
+        --card: #ffffff;
+        --text: #1c1b16;
+        --muted: #5d5a4f;
+        --line: #d6c9b6;
+        --accent: #a64b2a;
+        --accent-dark: #6f311b;
+        --shadow: 0 20px 50px rgba(38, 25, 12, 0.18);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Fira Sans", "Gill Sans", "Trebuchet MS", sans-serif;
+        color: var(--text);
+        background: radial-gradient(circle at top, var(--bg-accent), var(--bg));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .panel {
+        max-width: 720px;
+        width: 100%;
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 32px 36px;
+        border: 1px solid var(--line);
+        animation: rise 420ms ease-out;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 26px;
+        letter-spacing: 0.4px;
+      }
+
+      p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 180px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        padding: 12px 14px;
+        font-family: "Fira Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 14px;
+        color: var(--text);
+        background: #fbf9f5;
+        resize: vertical;
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      button {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+
+      button:active {
+        transform: translateY(1px);
+      }
+
+      .save {
+        background: var(--accent);
+        color: #fffdf8;
+        box-shadow: 0 10px 18px rgba(166, 75, 42, 0.3);
+      }
+
+      .save:hover {
+        background: var(--accent-dark);
+      }
+
+      .reset {
+        background: #efe7db;
+        color: var(--text);
+        border: 1px solid var(--line);
+      }
+
+      .status {
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--muted);
+        min-height: 20px;
+      }
+
+      .examples {
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px dashed var(--line);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      code {
+        background: #f0e8db;
+        padding: 2px 6px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="panel">
+      <h1>UCSD SSO Auto Select</h1>
+      <p>
+        Configure which URLs should trigger the auto-selection behavior. Add one
+        entry per line. Full URLs and hostnames are supported.
+      </p>
+
+      <label for="urlList">Enabled URLs</label>
+      <textarea id="urlList" spellcheck="false"></textarea>
+
+      <div class="actions">
+        <button class="save" id="save">Save</button>
+        <button class="reset" id="reset">Reset to default</button>
+      </div>
+
+      <div class="status" id="status"></div>
+
+      <div class="examples">
+        Examples: <code>https://a5.ucsd.edu</code>, <code>login.ucsd.edu</code>,
+        <code>https://a5.ucsd.edu/shibboleth/*</code>
+      </div>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>
